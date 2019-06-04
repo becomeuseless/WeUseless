@@ -10,20 +10,19 @@ Given nums = [2, 7, 11, 15], target = 9,
 Because nums[0] + nums[1] = 2 + 7 = 9,
 return [0, 1].
 
-9-2 = 7
+
+{7:0, 2: 1, -2: 3, -6: 4}
 
 """
 
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         diff = {}
-        result = []
+        result = [None] * 2
         for i in range(len(nums)):
-            for key,value in diff.items():
-                #print(str(key) + '-' + str(value))
-                if nums[i] == value and i != key:
-                    result.append(key)
-                    result.append(i)
-                    break
-            diff[i] = target - nums[i]
+            if diff.get(nums[i]) is not None:
+                result[0] = i
+                result[1] = diff[nums[i]]
+                break
+            diff[target - nums[i]] = i
         return result
