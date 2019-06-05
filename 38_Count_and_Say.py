@@ -31,19 +31,31 @@ class Solution(object):
         """
         :type n: int
         :rtype: str
+
+        Time Complexity : O(n^2)
+        Space Complexity : O(n)
         """
 
-        s = countAndSay(n-1)
-        l = len(s)
-        for i in range(len(s)) :
-            if i < len(s) - 1 :
-                j = 1
-                while s[i] == s[i+j] and i+j < len(s):
-                    j += 1
-                s.append(str(j)).append(s[i])
-                i = i + j
-            else :
-                s.append('1').append(s[i])
+        ##Recursion + Memoization(dictionary)
 
-        return s
-                
+        dict = {}
+        dict[1] = '1'
+        if n in dict :
+            return dict[n]
+        else :
+            s = self.countAndSay(n-1)
+            l = len(s)
+            temp = ''
+            i = 0
+            while i < l :
+                if i < l - 1 :
+                    j = 1
+                    while i+j < l and s[i] == s[i+j] :
+                        j += 1
+                    temp = temp + str(j) + s[i]
+                    i = i + j
+                else :
+                    temp = temp + '1' + s[i]
+                    i += 1
+            dict[n] = temp
+            return temp
