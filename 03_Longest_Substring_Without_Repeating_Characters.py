@@ -72,3 +72,5 @@ class Solution:
                 curLength += 1
                 longestLength = max(longestLength, curLength)
         return longestLength
+
+
