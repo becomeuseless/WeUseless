@@ -55,3 +55,32 @@ class Solution(object):
                     return False
 
         return mystack == []
+
+    def isValid2(self, s: str) -> bool:
+        """
+        20. Valid Parentheses
+        O(n): time
+        O(n): Space
+        """
+        if len(s) == 0:
+            return True
+        stack = []
+        for each in s:
+            if each == "(" or each == "[" or each =="{":
+                stack.append(each)
+                continue
+            if each == ")":
+                if len(stack) == 0 or stack[-1] != "(":
+                    return False
+                stack.pop()         
+            if each == "]":
+                if len(stack) == 0 or stack[-1] != "[":
+                    return False
+                stack.pop()
+            if each == "}":
+                if len(stack) == 0 or stack[-1] != "{":
+                    return False
+                stack.pop()
+        if len(stack) == 0:
+            return True
+        return False
