@@ -56,3 +56,20 @@ class Solution(object):
                 nums[i] = item
                 i += 1
         return i
+
+	
+    def removeElement(self, nums: List[int], val: int) -> int:
+	"""This wont change original dataset, lol """
+        if len(nums) == 0:
+            return 0
+        
+        idx = -1
+        for i in range(len(nums)):
+            #no swap
+            if nums[i] != val and idx + 1 == i:
+                idx += 1
+            #need swap
+            elif nums[i] != val and idx + 1 != i:
+                nums[idx + 1],nums[i] = nums[i], nums[idx+1]
+                idx += 1      
+        return idx + 1
