@@ -16,6 +16,9 @@ Clarification:
 What should we return when needle is an empty string? This is a great question to ask during an interview.
 
 For the purpose of this problem, we will return 0 when needle is an empty string. This is consistent to C's strstr() and Java's indexOf().
+
+strStr2 is brutal force. Time: O(n * m), Space: O(1)
+
 '''
 
 class Solution(object):
@@ -42,3 +45,31 @@ class Solution(object):
                     return i
             i += 1
         return -1
+
+    def strStr2(self, haystack: str, needle: str) -> int:
+        if len(needle) == 0:
+            return 0
+        
+        for i in range(len(haystack)):
+            for j in range(len(needle)):
+                #check if rest of haystack is not enough
+                if len(haystack) - i < len(needle) - j:
+                    return -1      
+                furtherStepGoes = 0
+                jumpIfFailed = 0
+                if haystack[i] == needle[j]:
+                    if haystack[i] == needle[0]:
+                        jumpIfFailed = i
+                    furtherStepGoes += 1
+                    i = i + 1
+                    j = j + 1
+                    if j == len(needle):
+                        return i - len(needle)
+                    continue
+                if haystack[i] != needle[j]:
+                    #rollback and goes to next character
+                    i = jumpIfFailed + 1
+                    j = 1
+                    break
+        return -1
+        
