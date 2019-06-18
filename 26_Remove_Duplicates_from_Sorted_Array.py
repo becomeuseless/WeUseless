@@ -53,3 +53,16 @@ class Solution(object):
             return 0
         else :
             return i + 1
+
+    def removeDuplicates2(self, nums: List[int]) -> int:
+        if len(nums) <= 1:
+            return len(nums)
+        start = 0
+        end = 1
+        while end < len(nums):
+            if nums[start] != nums[end]:
+                start += 1
+                if start != end:
+                    nums[start] = nums[end]
+            end+=1
+        return start + 1
