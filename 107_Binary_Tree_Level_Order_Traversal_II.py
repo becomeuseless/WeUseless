@@ -53,3 +53,25 @@ class Solution(object):
             nxtLvl = []
 
         return output
+
+
+
+        def levelOrderBottom2(self, root):
+
+        #Option 2: recursive
+        #Time Complexity : O(n)
+        #Space Complexity : O(n)
+
+        output = []
+        if not root :
+            return []
+        self.levelOrderBottomHelper(root, 1, output)
+        return output
+
+    def levelOrderBottomHelper(self, root, level, output):
+        if root :
+            if len(output) < level :
+                output.insert(0,[])
+            output[-level].append(root.val)
+            self.levelOrderBottomHelper(root.left, level+1, output)
+            self.levelOrderBottomHelper(root.right, level+1, output)
