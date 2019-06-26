@@ -66,3 +66,27 @@ class Solution(object):
         self.plusOne(digits)
         digits.append(0)
         return digits
+    
+    
+    def plusOne(self, digits: List[int]) -> List[int]:
+        """
+        Time Complexity O(1)
+        Space O(1)
+        """
+        
+        digit = 0
+        carry = 1
+        
+        for i in range(len(digits)):
+            
+            digit = digits[-1-i] + carry    #current digit
+            digits[-1-i] = digit % 10      #new digit
+            carry = digit // 10              #reset carry
+            if carry == 0:
+                break
+        #check the first element at last if it is 0 then add 1
+        if digits[0] == 0:
+            digits.append(0)
+            digits[0] = 1
+            
+        return digits
