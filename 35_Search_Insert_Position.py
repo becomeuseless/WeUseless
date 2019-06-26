@@ -47,3 +47,18 @@ class Solution(object):
             else : lo = mi + 1
         return lo
             
+    def searchInsert2(self, nums: List[int], target: int) -> int:
+        """Binary Search to locate the value"""
+        l = 0
+        r = len(nums) - 1
+        while l < r:
+            if nums[(l+r)//2] == target:
+                return (l+r)//2
+            elif nums[(l+r)//2] > target:
+                r = (l + r) //2 -1
+            elif nums[(l+r)//2] < target:
+                l = (l+r)//2 + 1
+        if target <= nums[l]:
+            return l
+        if target > nums[l]:
+            return l + 1
