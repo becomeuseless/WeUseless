@@ -41,3 +41,27 @@ class Solution(object):
                 length += 1
             i += 1
         return length
+    
+    
+    def lengthOfLastWord2(self, s: str) -> int:
+        count = 0
+        strLen = len(s)
+        metFirstAlph = False
+        for i in range(strLen):
+            each = s[strLen - 1 - i]
+            if each != ' ':             #if each not a space
+                count += 1
+                metFirstAlph = True
+            else:
+                if metFirstAlph: #already a word
+                    break
+                else:
+                    continue
+        return count
+    
+    def lengthOfLastWord3(self, s: str) -> int:
+        "[thing for thing in list_of_things if expression]"
+        last_word = [word for word in s.split(' ') if word]
+        if last_word:
+            return len(last_word[-1])
+        return 0
