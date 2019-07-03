@@ -24,8 +24,8 @@ class Solution:
         Base case:
             all number are used
             
-        Time: O ( (n2) ^ 3 * (n3) ^ 3 *....(n9)^4) n1=number count of 1
-        Space: O ( (n2) ^ 3 * (n3) ^ 3 *....(n9)^4) n1=number count of 1 )
+        Time: O ( (3)^n2 * 3^n3 *....4^n9) < 4^(n1+n2+n3+...+n9) n2=number count of 2
+        Space: O ( (3)^n2 * 3^n3 *....4^n9) < 4^(n1+n2+n3+...+n9) n2=number count of 2 )
         """
         if not digits:
             return []
