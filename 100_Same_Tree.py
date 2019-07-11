@@ -56,3 +56,14 @@ class Solution(object):
             return True
         else:
             return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+    
+    def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
+        #existing node
+        if not p and not q:  #no child
+            return True
+        elif not p or not q: #not balanced
+            return False
+        else:
+            if p.val == q.val:
+                return self.isSameTree(p.left, q.left) and self.isSameTree(p.right,q.right)
+            return False
