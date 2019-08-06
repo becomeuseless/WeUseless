@@ -31,3 +31,35 @@ class Solution(object):
             else :
                 count -= 1
         return majority
+
+    """
+    Using Hashmap
+    Counter is a subclass of dictionary object. The Counter() function in collections                   module takes an iterable or a mapping as the argument and returns a Dictionary.             In this dictionary, a key is an element in the iterable or the mapping and                 value is the number of times that element exists in the iterable or the                     mapping.
+    defaultdict
+    OrderedDict
+    deque
+    ChainMap
+    namedtuple()
+    
+    More details: https://stackabuse.com/introduction-to-pythons-collections-module/
+    """
+    def majorityElement(self, nums):
+        counts = collections.Counter(nums)
+        return max(counts.keys(), key=counts.get)
+    
+    """
+    There are 4 more ways resolve this. Fk off.
+    O(N)
+    """
+    def majorityElement1(self, nums: List[int]) -> int:
+        memo = {}
+        for each in nums:
+            if each in memo:
+                memo[each] += 1
+            else:
+                memo[each] = 1
+            #check if it's majority    
+            if memo[each] > len(nums) / 2:
+                return each
+            
+        return 0
