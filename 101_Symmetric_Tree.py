@@ -81,3 +81,22 @@ class Solution(object):
             queue.insert(0, q.left)
         return True
         """
+        
+        
+    def isSymmetric2(self, root: TreeNode) -> bool:
+        """
+        Time: O(N)
+        Space: O(1)
+        """
+        if not root:
+            return True
+        def helper(l,r):
+            if not l and not r:
+                return True
+            elif not l or not r:
+                return False
+            else:
+                if l.val == r.val:
+                    return helper(l.left, r.right) and helper(l.right, r.left)
+            return False 
+        return helper(root.left, root.right)
